@@ -60,7 +60,8 @@ other than the three sane values listed above."
       (let ((found (assoc mac-command-modifier
                           '((hyper . "H-")
                             (super . "s-")
-                            (alt   . "A-")))))
+                            (alt   . "A-")
+                            (meta  . "M-")))))
         (when found (kbd (concat (cdr found) keys)))))
 
     ;; Keybindings
