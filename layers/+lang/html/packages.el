@@ -266,7 +266,9 @@
      ("\\.hbs\\'"        . web-mode)
      ("\\.eco\\'"        . web-mode)
      ("\\.ejs\\'"        . web-mode)
-     ("\\.djhtml\\'"     . web-mode))))
+     ("\\.djhtml\\'"     . web-mode)
+     ("\\.jsp\\'"        . web-mode)
+     )))
 
 (defun html/post-init-yasnippet ()
   (spacemacs/add-to-hooks 'spacemacs/load-yasnippet '(css-mode-hook
