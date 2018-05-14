@@ -42,12 +42,11 @@
     (progn
       (spacemacs|hide-lighter lsp-mode))))
 
-(defun lsp/init-lsp-ui ()
-  (use-package lsp-ui
-    :defer t
-    :init (add-hook 'lsp-mode-hook #'lsp-ui-mode)
-    :config
-    (progn
-      (spacemacs//lsp-sync-peek-face)
-      (add-hook 'spacemacs-post-theme-change-hook
-                #'spacemacs//lsp-sync-peek-face))))
+;; (defun lsp/init-lsp-ui ()
+;;   (use-package lsp-ui
+;;     :init (add-hook 'lsp-mode-hook #'lsp-ui-mode)
+;;     :config
+;;     (progn
+;;       (spacemacs//lsp-sync-peek-face)
+;;       (add-hook 'spacemacs-post-theme-change-hook
+;;                 #'spacemacs//lsp-sync-peek-face))))
