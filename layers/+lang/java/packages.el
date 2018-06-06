@@ -29,6 +29,10 @@
         maven-test-mode
         (meghanada :toggle (not (version< emacs-version "25.1")))
         mvn
+        lsp-mode
+        lsp-java
+        lsp-ui
+        company-lsp
         org
         ))
 
@@ -436,6 +440,40 @@
         ;; meghanada-local-variable
 
         "x:" 'meghanada-run-task))))
+
+(defun java/init-lsp-java ()
+  (use-package lsp-java
+    :defer t
+    :config
+    (progn
+      ;; key bindings
+      (dolist (prefix '(("mc" . "compile")
+                        ("mg" . "goto")
+                        ("mr" . "refactor")))
+      (spacemacs/set-leader-keys-for-major-mode 'java-mode
+        "gg"  'lsp-goto-type-definition
+        "hu"  'xref-find-references
+        "ha"  'xref-find-apropos
+        ;; TODO uncomment when https://github.com/emacs-lsp/lsp-mode/pull/365 is in.
+        ;; "hh"  'lsp-describe-thing-at-point
+        "pu"  'lsp-java-update-user-settings
+        ;; TODO change to lsp-execute-code-action when https://github.com/emacs-lsp/lsp-mode/pull/371
+        ;; is in
+        "rrs" 'lsp-rename
+        "ra"  'lsp-ui-sideline-apply-code-actions
+        "el"  'lsp-ui-flycheck-list
+        "roi" 'lsp-java-organize-imports
+        "qr"  'lsp-restart-workspace
+        "cc"  'lsp-java-build-project
+        "an"  'lsp-java-actionable-notifications
+        "="   'lsp-format-buffer)
+
+      (setq lsp-highlight-symbol-at-point nil
+            lsp-ui-sideline-update-mode 'point
+            ;; uncomment when https://github.com/emacs-lsp/lsp-mode/pull/365
+            ;; is in
+            ;; lsp-eldoc-render-all nil
+            lsp-inhibit-message t)))))
 
 (defun java/init-mvn ()
   (use-package mvn
