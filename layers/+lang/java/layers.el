@@ -10,3 +10,4 @@
 ;;; License: GPLv3
 
 (configuration-layer/declare-layer 'groovy)
+(configuration-layer/declare-layer 'lsp)

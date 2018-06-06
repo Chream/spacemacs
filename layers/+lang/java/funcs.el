@@ -29,21 +29,24 @@
   (pcase java-backend
     (`meghanada (spacemacs//java-setup-meghanada))
     (`eclim (spacemacs//java-setup-eclim))
-    (`ensime (spacemacs//java-setup-ensime))))
+    (`ensime (spacemacs//java-setup-ensime))
+    (`lsp (spacemacs//java-setup-lsp))))
 
 (defun spacemacs//java-setup-company ()
   "Conditionally setup company based on backend."
   (pcase java-backend
     (`meghanada (spacemacs//java-setup-meghanada-company))
     (`eclim (spacemacs//java-setup-eclim-company))
-    (`ensime (spacemacs//java-setup-ensime-company))))
+    (`ensime (spacemacs//java-setup-ensime-company))
+    (`lsp (spacemacs//java-setup-lsp-company))))
 
 (defun spacemacs//java-setup-flycheck ()
   "Conditionally setup flycheck based on backend."
   (pcase java-backend
     (`meghanada (spacemacs//java-setup-meghanada-flycheck))
     (`eclim (spacemacs//java-setup-eclim-flycheck))
-    (`ensime (spacemacs//java-setup-ensime-flycheck))))
+    (`ensime (spacemacs//java-setup-ensime-flycheck))
+    (`lsp (spacemacs//java-setup-lsp-flycheck))))
 
 (defun spacemacs//java-setup-flyspell ()
   "Conditionally setup flyspell based on backend."
@@ -288,3 +291,25 @@
   (when (s-matches? (rx (+ (not space)))
                     (buffer-substring (line-beginning-position) (point)))
     (delete-horizontal-space t)))
+
+
+;; LSP Java
+
+(defun spacemacs//java-setup-lsp ()
+  "Setup LSP Java."
+  (require 'lsp-java)
+  (require 'company-lsp)
+  (lsp-java-enable))
+
+(defun spacemacs//java-setup-lsp-company ()
+  (require 'company-lsp)
+  (add-to-list 'company-backends '(company-lsp :separate company-dabbrev-code))
+  (yas-minor-mode t)
+  (company-mode))
+
+(defun spacemacs//java-setup-lsp-flycheck ()
+  "Setup LSP Java syntax checking."
+  (when (spacemacs/enable-flycheck 'java-mode)
+    (require 'lsp-ui-flycheck)
+    (lsp-ui-flycheck-enable nil)
+    (flycheck-mode)))
