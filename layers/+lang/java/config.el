@@ -19,3 +19,5 @@
 
 (defvar java--ensime-modes '(java-mode)
   "Modes using ensime. Mainly used to define ENSIME key bindings.")
+
+(defvar java---lsp-java-save-action-organize-imports nil)
