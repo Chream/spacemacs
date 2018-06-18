@@ -18,7 +18,8 @@
     ;; for LSP.
     (flycheck-lsp :requires flycheck :location built-in)
     lsp-mode
-    lsp-ui
+    (lsp-ui :location (recipe :fetcher file
+                              :path "~/repos/elisp/lsp-ui"))
     ))
 
 (defun lsp/init-company-lsp ()
