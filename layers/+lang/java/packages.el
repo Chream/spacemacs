@@ -29,10 +29,8 @@
         maven-test-mode
         (meghanada :toggle (not (version< emacs-version "25.1")))
         mvn
-        lsp-mode
-        lsp-java
+        (lsp-java :requires lsp-mode)
         lsp-ui
-        company-lsp
         org
         ))
 
@@ -440,6 +438,9 @@
         ;; meghanada-local-variable
 
         "x:" 'meghanada-run-task))))
+
+(defun java/post-init-lsp-ui ()
+  )
 
 (defun java/init-lsp-java ()
   (use-package lsp-java
