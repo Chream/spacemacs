@@ -12,8 +12,7 @@
 (setq java-packages
       '(
         company
-        (company-emacs-eclim :toggle
-                             (configuration-layer/package-used-p 'company))
+        (company-emacs-eclim :requires company)
         eclim
         eldoc
         ensime
@@ -30,6 +29,7 @@
         (meghanada :toggle (not (version< emacs-version "25.1")))
         mvn
         org
+        java-snippets
         ))
 
 (defun java/post-init-company ()
@@ -439,3 +439,7 @@
         "mcc" 'mvn-compile
         "mcC" 'mvn-clean
         "mcr" 'spacemacs/mvn-clean-compile))))
+
+(defun java/init-java-snippets ()
+  (use-package java-snippets
+    :commands hippie-expand))
