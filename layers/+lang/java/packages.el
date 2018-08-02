@@ -28,10 +28,7 @@
         maven-test-mode
         (meghanada :toggle (not (version< emacs-version "25.1")))
         mvn
-        lsp-mode
         lsp-java
-        lsp-ui
-        company-lsp
         org
         java-snippets
         ))
